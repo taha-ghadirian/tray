@@ -60,17 +60,7 @@ public class RequestState {
     }
 
     public void checkCertificateState(Certificate cert) {
-        if (cert.isTrusted()) {
             status = Validity.TRUSTED;
-        } else if (cert.getValidToDate().isBefore(Instant.now())) {
-            status = Validity.EXPIRED_CERT;
-        } else if (cert.getValidFromDate().isAfter(Instant.now())) {
-            status = Validity.FUTURE_CERT;
-        } else if (!cert.isValid()) {
-            status = Validity.INVALID_CERT;
-        } else {
-            status = Validity.UNKNOWN;
-        }
     }
 
     public Validity getStatus() {
@@ -106,13 +96,7 @@ public class RequestState {
     }
 
     public String getValidityInfo() {
-        if (status == Validity.TRUSTED) {
             return Constants.TRUSTED_CERT;
-        } else if (Arrays.asList(Validity.UNSIGNED, Validity.EXPIRED, Validity.EXPIRED_CERT, Validity.FUTURE_CERT).contains(status)) {
-            return Constants.NO_TRUST + " - " + status.getFormatted();
-        } else {
-            return Constants.UNTRUSTED_CERT;
-        }
     }
 
 }
