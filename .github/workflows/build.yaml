@@ -58,3 +58,16 @@ jobs:
       - run: ant nsis
       - run: Start-Process -Wait ./out/qz-tray-*.exe -ArgumentList "/S"
       - run: "&'C:/Program Files/QZ Tray/qz-tray.exe' --wait --version|Out-Null"
+
+
+      # Compress the ./out directory into a ZIP file
+      - name: Compress ./out directory
+        run: |
+          Compress-Archive -Path './out/*' -DestinationPath './qz-tray-output.zip'
+
+      # Upload the ZIP file as an artifact for download
+      - name: Upload ZIP artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: qz-tray-output
+          path: './qz-tray-output.zip'
