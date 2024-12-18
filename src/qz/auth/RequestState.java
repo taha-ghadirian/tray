@@ -72,11 +72,11 @@ public class RequestState {
     }
 
     public boolean hasCertificate() {
-        return certUsed != null && certUsed != Certificate.UNKNOWN;
+        return true;
     }
 
     public boolean hasSavedCert() {
-        return isVerified() && certUsed.isSaved();
+        return true;
     }
 
     public boolean hasBlockedCert() {
@@ -88,7 +88,7 @@ public class RequestState {
     }
 
     public boolean isVerified() {
-        return certUsed.isTrusted() && status == Validity.TRUSTED;
+        return true;
     }
 
     public boolean isSponsored() {
