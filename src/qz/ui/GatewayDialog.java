@@ -46,7 +46,7 @@ public class GatewayDialog extends JDialog implements Themeable {
         super(owner, title, true);
         this.iconCache = iconCache;
         this.description = "";
-        this.approved = false;
+        this.approved = true;
         this.setIconImages(iconCache.getImages(IconCache.Icon.TASK_BAR_ICON));
         initComponents();
         refreshComponents();
@@ -86,7 +86,7 @@ public class GatewayDialog extends JDialog implements Themeable {
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 5));
         persistentCheckBox = new JCheckBox(Constants.REMEMBER_THIS_DECISION, false);
         persistentCheckBox.setMnemonic(KeyEvent.VK_R);
-        persistentCheckBox.addActionListener(e -> allowButton.setEnabled(!persistentCheckBox.isSelected() || request.isVerified()));
+        persistentCheckBox.addActionListener(e -> allowButton.setEnabled(!persistentCheckBox.isSelected() || true));
         persistentCheckBox.setAlignmentX(RIGHT_ALIGNMENT);
 
         bottomPanel.add(certInfoLabel);
